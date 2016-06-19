@@ -1,6 +1,11 @@
 package cn.demo.service;
  
- import java.io.File;
+ import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import java.io.File;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
@@ -8,11 +13,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import cn.demo.Dao.Dao;
 import cn.demo.entity.DownloadInfo;
 import cn.demo.entity.LoadInfo;
@@ -120,6 +120,7 @@ import cn.demo.entity.LoadInfo;
                  return;
              state = DOWNLOADING;
              for (DownloadInfo info : infos) {
+                 Log.d("yao","new download thread");
                  new MyThread(info.getThreadId(), info.getStartPos(),
                          info.getEndPos(), info.getCompeleteSize(),
                          info.getUrl()).start();
